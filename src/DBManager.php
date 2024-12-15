@@ -47,6 +47,17 @@ class DBManager{
         return "File created at: " . $path;
     }
 
+    /**
+     * Retrieves the contents of a file
+     * @param $path relative path from the Storage directory. Excludes file extension
+     * @returns object
+     */
+    public function GetFile($path) : object
+    {
+        $filePath = PathHelper::BuildPath([$this->storageDir, $path . ".json"]);
+        return json_decode(file_get_contents($filePath));
+    }
+
 }
 
 ?>

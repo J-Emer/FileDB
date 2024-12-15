@@ -22,6 +22,9 @@ GetDirectories($path) -> retrieves all Directory names from path: Returns array 
 NewFile($obj, $path) -> takes in an obj and path, saves the obj to a certain file type (.json, .yaml, .md): Returns successful or not successful message to user
 NewDirectory
 
+Lists -> should be built and saved inside of each subdirectory or Category. We can then retrieve the list later
+to be used in generating a "List of content" style page
+
 
 
 

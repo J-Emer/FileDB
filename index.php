@@ -7,7 +7,8 @@ require "vendor/autoload.php";
 
 
 $db = new DBManager(__DIR__ . "/Storage");
-echo $db->AddFile(new DummyData("Second", "Jemer"), "Test/Second");
 
+$post = $db->GetFile("Test/First");
+echo $post->Title; 
 
 ?>
