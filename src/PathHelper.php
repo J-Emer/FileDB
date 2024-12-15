@@ -1,6 +1,6 @@
 <?php 
 
-namespace Jemer\Phphelpers;
+namespace Jemer\FileDb;
 
 
 class PathHelper
