@@ -1,0 +1,21 @@
+
+File Layout: 
+
+Storage: 
+    Subdirectory 1
+        file1.txt
+        file2.txt
+    
+    Subdirectory 2
+        file3.txt
+    
+    somefile.txt
+    otherfile.txt
+
+
+
+GetFile($path) -> retrieves a file from the path: Returns data as Class obj
+GetFiles($path) -> retrieves all filenames from path: Returns array of file names
+GetDirectories($path) -> retrieves all Directory names from path: Returns array of Directory names
+    [possible change name to "GetCategories"?]
+SaveFile($obj, $path) -> takes in an obj and path, saves the obj to a certain file type (.json, .yaml, .md): Returns successful or not successful message to user
