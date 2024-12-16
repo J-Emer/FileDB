@@ -33,6 +33,42 @@ class PathHelper
 
         return rtrim($str, DIRECTORY_SEPARATOR);
     }
+    public static function GetFiles($path) : array
+    {
+        $files = array_diff(scandir($path), array(".", ".."));
+
+        $cache = [];
+
+        foreach ($files as $file) 
+        {
+            $_path = PathHelper::BuildPath([$path, $file]);
+            
+            if(is_file($_path))
+            {
+                array_push($cache, $file);
+            }
+        }
+
+        return $cache;
+    }
+    public static function GetDirectories($path) : array
+    {
+        $files = array_diff(scandir($path), array(".", ".."));
+
+        $cache = [];
+
+        foreach ($files as $file) 
+        {
+            $_path = PathHelper::BuildPath([$path, $file]);
+            
+            if(is_dir($_path))
+            {
+                array_push($cache, $file);
+            }
+        }
+
+        return $cache;
+    }
 }
 
 ?>

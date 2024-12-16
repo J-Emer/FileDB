@@ -65,23 +65,17 @@ class DBManager{
      */
     public function GetFiles($path) : array
     {
-        $filePath = PathHelper::BuildPath([$this->storageDir, $path]);
-
-        $files = array_diff(scandir($filePath), array(".", ".."));
-
-        $cache = [];
-
-        foreach ($files as $file) 
-        {
-            $_path = PathHelper::BuildPath([$filePath, $file]);
-            
-            if(is_file($_path))
-            {
-                array_push($cache, $file);
-            }
-        }
-
-        return $cache;
+        return PathHelper::GetFiles(PathHelper::BuildPath([
+            $this->storageDir,
+            $path
+        ]));
+    }
+    public function GetCategories($path) : array
+    {
+        return PathHelper::GetDirectories(PathHelper::BuildPath([
+            $this->storageDir,
+            $path
+        ]));
     }
 
     /**

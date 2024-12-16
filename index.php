@@ -8,9 +8,6 @@ require "vendor/autoload.php";
 
 $db = new DBManager(__DIR__ . "/Storage");
 
-echo $db->UpdateFile(
-                new DummyData("First Post", "Bob Smith"), 
-                "Test/First"
-                );
+var_dump($db->GetCategories("Test"));
 
 ?>
