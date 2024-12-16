@@ -58,6 +58,57 @@ class DBManager{
         return json_decode(file_get_contents($filePath));
     }
 
+    /**
+     * Retrieves all files in a path
+     * @param $path -> relative path from Storage directory
+     * @returns array of file names
+     */
+    public function GetFiles($path) : array
+    {
+        $filePath = PathHelper::BuildPath([$this->storageDir, $path]);
+
+        $files = array_diff(scandir($filePath), array(".", ".."));
+
+        $cache = [];
+
+        foreach ($files as $file) 
+        {
+            $_path = PathHelper::BuildPath([$filePath, $file]);
+            
+            if(is_file($_path))
+            {
+                array_push($cache, $file);
+            }
+        }
+
+        return $cache;
+    }
+
+    /**
+     * Updates an existing file
+     * @param $obj -> the new object data to be saved
+     * @param $path -> relative path from Storage directory, excluding extension
+     * @returns string indicating if file was updated or not
+     */
+    public function UpdateFile($obj, $path) : string
+    {
+        $path = PathHelper::BuildPath([
+            $this->storageDir, 
+            $path . ".json"
+        ]);
+
+        if(!file_exists($path))
+        {
+            return "File does not exist: terminating operation";
+        }
+
+        $json = json_encode($obj);
+
+        file_put_contents($path, $json);
+        
+        return "File updated at: " . $path;
+    }
+
 }
 
 ?>
